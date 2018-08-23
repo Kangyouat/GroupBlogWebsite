@@ -1,0 +1,53 @@
+﻿@model TheCodingVine.UI.ViewModels.BlogVM
+@{
+    ViewBag.Title = "EditABlog";
+}
+
+<h2>Edit Blog</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+        <fieldset>
+
+            @Html.HiddenFor(m => m.Blog.BlogPostId)
+
+            <div class="editor-label">
+                @Html.TextBoxFor(m => m.Blog.Title, new { @class = "form-control", placeholder = "Title" })
+                <span class="text-danger">@Html.ValidationMessageFor(m => m.Blog.Title) </span>
+                <br />
+            </div>
+            <div class="form-group">
+                <label>Post Date:</label>
+                @Html.TextBoxFor(m => m.Blog.PostDate, new { @class = "form-control", placeholder = "Post Date" })
+                <span class="text-danger">@Html.ValidationMessageFor(m => m.Blog.PostDate) </span>
+                <br />
+            </div>
+            <div class="form-group">
+                <label>Remove Date: </label>
+                @Html.TextBoxFor(m => m.Blog.RemoveDate, new { @class = "form-control", placeholder = "Remove Date" })
+                <span class="text-danger">@Html.ValidationMessageFor(m => m.Blog.RemoveDate) </span>
+                <br />
+            </div>
+            <div class="form-group">
+                <label>Search Tags:</label>
+
+                @Html.TextBoxFor(m => m.Blog.TagInputs, new { @class = "form-control" })
+
+            </div>
+
+            <div class="form-group">
+                <label>Blog Body:</label>
+                @Html.TextAreaFor(m => m.Blog.Content, new { @class = "form-control" })
+
+            </div>
+
+            <p>
+                <button type="submit" class="btn btn-sm btn-warning">Submit for Approval</button>
+                @Html.ActionLink("Cancel", "MyBlogs", "Blog", null, new { @class = "btn btn-sm btn-info" })
+            </p>
+            <br />
+
+        </fieldset>
+}

@@ -1,0 +1,61 @@
+﻿@model TheCodingVine.UI.ViewModels.BlogVM
+@{
+    ViewBag.Title = "Review";
+}
+
+<div class="row text-center">
+    <h2>Review Blog</h2>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+<fieldset>
+    <label>Title:</label>
+    <div class="editor-label">
+        @Html.TextBoxFor(m => m.Blog.Title, new { @class = "form-control", placeholder = Model.Blog.Title })
+        <span class="text-danger">@Html.ValidationMessageFor(m => m.Blog.Title)</span>
+        <br />
+    </div>
+    <div class="editor-label">
+        <label>Blog Content:</label>
+        @Html.TextAreaFor(m => m.Blog.Content, new { @class = "form-control", placeholder = Model.Blog.Content })
+        <span class="text-danger">@Html.ValidationMessageFor(m => m.Blog.Content)</span>
+    </div>
+    <div class="editor-label">
+        <label>Admin Notes:</label>
+        @Html.TextBoxFor(m => m.Blog.BlogNotes, new { @class = "form-control", placeholder = Model.Blog.BlogNotes })
+        <span class="text-danger">@Html.ValidationMessageFor(m => m.Blog.Content)</span>
+    </div>
+    <div class="editor-label">
+        <label>Post Date:</label>
+        @Html.TextBoxFor(m => m.Blog.PostDate, new { @class = "form-control", placeholder = Model.Blog.PostDate })
+        <span class="text-danger">@Html.ValidationMessageFor(m => m.Blog.PostDate)</span>
+    </div>
+    <div class="editor-label">
+        <label>Removal Date:</label>
+        @Html.TextBoxFor(m => m.Blog.RemoveDate, new { @class = "form-control", placeholder = Model.Blog.RemoveDate })
+        <span class="text-danger">@Html.ValidationMessageFor(m => m.Blog.RemoveDate)</span>
+    </div>
+
+    <div class="editor-label">
+        <label>Search Tags:</label>
+        @Html.TextBoxFor(m => m.Blog.TagInputs, new { @class = "form-control" })
+    </div>
+
+    <div class="editor-label">
+        <label>Check to approve: </label>
+        @Html.CheckBoxFor(m => m.Blog.IsApproved);
+    </div>
+
+    @Html.HiddenFor(m => m.Blog.BlogPostId)
+
+    <br />
+    <p>
+        <button type="submit">Save Changes</button>
+        @Html.ActionLink("Cancel", "ViewPending", "Blog")
+    </p>
+
+</fieldset>
+}
